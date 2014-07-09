@@ -29,7 +29,7 @@
 	#wrap {
 		max-width: 960px;
 		height: 450px;
-		overflow: hidden;
+		overflow: visible;
 		position: relative;
 		margin: 0 auto;
 		background: #fff;
@@ -37,9 +37,7 @@
 
 	#wrap img {
 		width: 100%;
-		position: absolute;
-		top: 0;
-		left: 0;
+		float: left;
 	}
 	.prev, .next {
 		position: absolute;
