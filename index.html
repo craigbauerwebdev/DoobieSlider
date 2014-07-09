@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<title>Doobie Slider</title>
+
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,600,700,800' rel='stylesheet' type='text/css'>
+
+		<style>
+
+		/*----Page Layout Styles----*/
+			* {
+				font-family: 'Open Sans', sans-serif;
+				margin: 0;
+				padding: 0;
+               
+			}
+			h1, h2, p {
+				width: 960px;
+				margin: 15px auto;
+			}
+			p {
+				font-weight: 300;
+			}
+			h1 {
+				font-size: 4em;
+				font-weight: 700;
+			}
+			a {
+					text-decoration: none;
+			}
+			a:link, a:visited {
+				color: #fff;	
+			}
+			a:hover {
+				color: red;	
+			}
+			/*----Slyder Styles ----*/
+			#wrap {
+				max-width: 960px;
+				height: 450px;
+				overflow: hidden;
+				position: relative;
+				margin: 0 auto;
+				background: #fff;
+			}
+
+			#wrap img {
+				width: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			.prev, .next {
+				position: absolute;
+				top: 50%;
+				z-index: 9;
+				width: 55px;
+				height: 70px;
+				margin-top: -35px;
+				opacity: .6;
+			}
+			.prev {
+				left: 15px;
+				background: url(img/arrowSprite.png) 0px 0px;
+			}
+			.next {
+				right: 15px;
+				background: url(img/arrowSprite.png) 55px 0px;
+			}
+		</style>
+		
+	</head>
+	<body>
+
+		<h1>Doobie Slider</h1>
+		<div id="wrap">
+
+			<img src="img/1.jpg" />
+			<img src="img/2.jpg" />
+			<img src="img/3.jpg" />
+			<img src="img/4.jpg" />
+			<img src="img/5.jpg" />
+			<img src="img/6.jpg" />
+
+			<a href="#"><div class="prev"></div></a>
+			
+			<a href="#"><div class="next"></div></a>
+
+		</div>	
+
+		<h2>Documentation</h2>
+
+		<p>Doobie slider is a simple image only slider that can be integrated into any project.</p>
+
+		<!--<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>-->
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/doobieSlider.js"></script>
+
+		<script>
+			$(document).ready(function() {
+				//call the Doobie Slider
+				doobieSlider(5000, 500);
+				// Reccommended settings are 5000, 500 but you can set them to any thing you want.
+				// 1st number is the time between slide transitions.
+				// 2nd number is the speed of the cross fade.
+				
+
+			});
+		</script>
+<pre><div></div></pre>
+	</body>
+</html>
