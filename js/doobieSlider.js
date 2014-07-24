@@ -5,16 +5,75 @@ function doobieSlider(interval, speed) {
 		var prev = $('.prev');
 		var next = $('.next');
 		var controls = $('.next, .prev');
+		var first = $('#long-wrap a:eq(0)');
+		function slide() {
+			var first = $('#long-wrap a:eq(0)');
+			var second = $('#long-wrap a:eq(1)');
 
-		//Slider Auto Play
+			second.css('right', '0').animate({
+
+				right: '+960px'
+
+			}, speed);
+
+			first.animate({
+
+				right: '+=960px'
+
+			}, speed, function(){
+				
+				first.removeAttr('style')
+					.appendTo('#long-wrap');
+				$('#long-wrap a:eq(0)').css('right', '960px');
+
+				});	
+		}
+
+		function nextSlide(e){
+			e.preventDefault();
+
+			slide();
+			
+			setTimeout(function(){
+				$('.next').one('click', nextSlide);
+			},500);
+		}
+
+		function prevSlide(e){
+			e.preventDefault();
+
+			var first = $('#long-wrap a:eq(0)');
+			var last = $('#long-wrap a:last');
+
+			last.css('left', '0').animate({
+
+				left: '+960px'
+
+			}, speed);
+
+			first.animate({
+
+				right: '-=960px'
+
+			}, speed, function(){
+				
+				last.removeAttr('style')
+					.prependTo('#long-wrap');
+				$('#long-wrap a:eq(0)').css('right', '960px');
+				$('#long-wrap a:eq(0)').next().removeAttr('style');
+
+				});
+
+			setTimeout(function(){
+				$('.prev').one('click', prevSlide);
+			},500);
+		}
+//Slider Auto Play
 		var slider = setInterval(function() {
 
-			$('#wrap img:first').appendTo('#wrap').hide().fadeIn(speed);
+			slide();
 			
 		},interval);
-
-		// Hide controls
-		controls.hide();
 
 		wrap.on('mouseenter', function() {
 
@@ -28,7 +87,7 @@ function doobieSlider(interval, speed) {
 
 			slider = setInterval(function() {
 
-			$('#wrap img:first').appendTo('#wrap').hide().fadeIn(speed);
+				slide();
 			
 			},interval);
 
@@ -36,24 +95,16 @@ function doobieSlider(interval, speed) {
 
 		});
 
+		// Hide controls
+		controls.hide();
+
+		//initial placement offirst slide
+		first.css('right', '960px');
+
 		//Next button
-		next.on('click', function(e) {
-			e.preventDefault();
-			$('#wrap img:first').appendTo('#wrap').hide().fadeIn(speed);
-
-		});
-
+		next.one('click', nextSlide);
+			
 		//Previous button
-		prev.on('click', function(e) {
-			e.preventDefault();
-			var last = $('#wrap img:last');
-
-			last.fadeOut(speed);
-
-			setTimeout(function(){
-				$('#wrap img:last').prependTo('#wrap').fadeIn();
-			}, speed);
-
-		});
+		prev.one('click', prevSlide);
 
 }// close doobie slider
