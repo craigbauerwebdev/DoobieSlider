@@ -6,6 +6,7 @@ function doobieSlider(interval, speed) {
 		var next = $('.next');
 		var controls = $('.next, .prev');
 		var first = $('#long-wrap a:eq(0)');
+		
 		function slide() {
 			var first = $('#long-wrap a:eq(0)');
 			var second = $('#long-wrap a:eq(1)');
@@ -20,10 +21,9 @@ function doobieSlider(interval, speed) {
 
 				right: '+=960px'
 
-			}, speed, function(){
-				
-				first.removeAttr('style')
-					.appendTo('#long-wrap');
+			}, speed, function(){ 
+
+				first.removeAttr('style').appendTo('#long-wrap');
 				$('#long-wrap a:eq(0)').css('right', '960px');
 
 				});	
@@ -36,7 +36,7 @@ function doobieSlider(interval, speed) {
 			
 			setTimeout(function(){
 				$('.next').one('click', nextSlide);
-			},500);
+			}, speed);
 		}
 
 		function prevSlide(e){
@@ -57,18 +57,16 @@ function doobieSlider(interval, speed) {
 
 			}, speed, function(){
 				
-				last.removeAttr('style')
-					.prependTo('#long-wrap');
+				last.removeAttr('style').prependTo('#long-wrap');
 				$('#long-wrap a:eq(0)').css('right', '960px');
 				$('#long-wrap a:eq(0)').next().removeAttr('style');
 
+				$('.prev').one('click', prevSlide);
+
 				});
 
-			setTimeout(function(){
-				$('.prev').one('click', prevSlide);
-			},500);
 		}
-//Slider Auto Play
+		//Slider Auto Play
 		var slider = setInterval(function() {
 
 			slide();
